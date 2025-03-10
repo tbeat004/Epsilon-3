@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Epsilon 3</title>
+  <title>Epsilon 3A</title>
   <style>
     body {
       background-color: black;
@@ -33,12 +33,59 @@
       background-color: #222222;
       color: white;
     }
+
+    .gallery-container {
+      position: relative;
+      width: 550px; /* Match a single image width */
+      height: 450px;
+      overflow: hidden;
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      margin: 0 auto; /* Center the container */
+    }
+
+    .gallery {
+      display: flex;
+      width: max-content;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .gallery img {
+      width: 550px;
+      height: 450px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-right: 10px; /* Space between images */
+    }
+    .nav-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 50%;
+      font-size: 20px;
+    }
+    .nav-button:hover {
+      background: black;
+    }
+    .left {
+      left: 5px;
+    }
+    .right {
+      right: 5px;
+    }
   </style>
 </head>
 <body>
 
 <header style="color:white; text-align: center; font-size: xxx-large; margin-bottom: 20px;">
-  Epsilon 3
+  Epsilon 3A
 </header>
 
 <div class="btn-group">
@@ -48,9 +95,48 @@
   <button onclick="window.open('https://aws.amazon.com/what-is/artificial-intelligence/?gclid=CjwKCAiAzba9BhBhEiwA7glbakDEPBD2Qz7jwp0z1TQPEZ_rdKQcWwjiTRIf9RNJyTGZkGu9b9UfXRoCfLcQAvD_BwE&trk=b69342f1-7027-4ef4-a230-9f2d86659aaa&sc_channel=ps&ef_id=CjwKCAiAzba9BhBhEiwA7glbakDEPBD2Qz7jwp0z1TQPEZ_rdKQcWwjiTRIf9RNJyTGZkGu9b9UfXRoCfLcQAvD_BwE:G:s&s_kwcid=AL!4422!3!709180722230!e!!g!!%5Bwhat%20is%20ai%5D!21581300522!166336207575')">Learn AI</button>
   <button onclick="window.open('https://tbeat004.github.io/Epsilon-3/website.html')">Epsilon 3</button>
 </div>
-<p style="color: white; font-size: larger">Epsilon 3 is a state-of-the-art AI image generator designed with the consumer in mind
+<p style="color: white; font-size: larger">Epsilon 3A is the next revolutionary step in our Epsilon AI-Image technology. The Future Is Now.
 </p>
-<img src="AIIMAGE.png" alt="AI Generated Image">
+
+<div class="gallery-container">
+
+  <div class="gallery" id="gallery">
+    <img src="AI1.jpg" alt="Image 1">
+    <img src="AI2.jfif" alt="Image 2">
+    <img src="AI3.jpg" alt="Image 3">
+    <img src="AI4.jfif" alt="Image 4">
+    <img src="AI5.jfif" alt="Image 5">
+  </div>
+  <button class="nav-button left" onclick="scrollGallery(-1)">&#8249;</button>
+  <button class="nav-button right" onclick="scrollGallery(1)">&#8250;</button>
+</div>
+
+<script>
+  let index = 0;
+  const gallery = document.getElementById("gallery");
+  const images = document.querySelectorAll(".gallery img");
+  const imageWidth = images[0].offsetWidth + 10; // Image width + margin
+  const totalImages = images.length;
+  const maxIndex = totalImages - 1;
+
+
+
+  function scrollGallery(direction) {
+    index += direction;
+
+    // Ensure we don't go out of bounds
+    if (index < 0) {
+      index = 0; // Fix backward scrolling issue
+    } else if (index > maxIndex) {
+      index = maxIndex; // Fix forward scrolling limit
+    }
+
+    // Apply transformation for scrolling
+    gallery.style.transform = `translateX(${-index * imageWidth}px)`;
+  }
+
+</script>
+
 </body>
 </html>
 
